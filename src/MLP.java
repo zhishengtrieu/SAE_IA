@@ -3,60 +3,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
-interface TransferFunction  {
-    /**
-     * Function de transfert
-     * @param value entrée
-     * @return sortie de la fonction sur l'entrée
-     */
-    public double evaluate(double value);	
-	
-    /**
-     * Dérivée de la fonction de tranfert
-     * @param value entrée
-     * @return sortie de la fonction dérivée sur l'entrée
-     */
-    public double evaluateDer(double value);
-}
-
-class Neuron {
-    public double    Value;
-    public double[]  Weights;
-    public double    Bias;
-    public double    Delta;
-    
-    public Neuron(int prevLayerSize) {
-	Weights = new double[prevLayerSize];
-	Bias = Math.random();
-	Delta = Math.random() / 10000000000000.0;
-	Value = Math.random() / 10000000000000.0;
-	
-	for(int i = 0; i < Weights.length; i++)
-	    Weights[i] = Math.random()/ Weights.length;
-    }
-}
-
-class Layer {
-    public Neuron Neurons[];
-    public int 	  Length;
-	
-    /**
-     * Couche de Neurones
-     * 
-     * @param l     Taille de la couche
-     * @param prev  Taille de la couche précédente
-     */
-    public Layer(int l, int prev) {
-	Length = l;
-	Neurons = new Neuron[l];		
-
-	for(int j = 0; j < Length; j++)
-	    Neurons[j] = new Neuron(prev);
-    }
-}
-
-
 public class MLP  {
     protected double	        fLearningRate = 0.6;
     protected Layer[]		fLayers;
