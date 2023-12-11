@@ -9,27 +9,40 @@ public class Main
         double[] orOutputs = {0, 1, 1, 1};
         double[] xorOutputs = {0, 1, 1, 0};
 
-//        MLP andPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new Sigmoid());
-//        MLP orPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new Sigmoid());
-//        MLP xorPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new Sigmoid());
+        int[] layers2 = {2, 2, 7, 1};
+        int[] layers3 = {2, 2, 1};
 
-        MLP andPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new HyperbolicTangent());
-        MLP orPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new HyperbolicTangent());
-        MLP xorPerceptron = new MLP(new int[]{2, 2, 1}, 0.6, new HyperbolicTangent());
+        double learningRate = 0.6;
+
+        MLP sigmoidAndPerceptron = new MLP(layers2, learningRate, new Sigmoid());
+        MLP sigmoidOrPerceptron = new MLP(layers2, learningRate, new Sigmoid());
+        MLP sigmoidXorPerceptron = new MLP(layers2, learningRate, new Sigmoid());
+
+        MLP hyperbolicAndPerceptron = new MLP(layers2, learningRate, new HyperbolicTangent());
+        MLP hyperbolicOrPerceptron = new MLP(layers2, learningRate, new HyperbolicTangent());
+        MLP hyperbolicXorPerceptron = new MLP(layers2, learningRate, new HyperbolicTangent());
 
 
         for (int i = 0; i < 10000; i++) {
             for (int j = 0; j < andInputs.length; j++) {
-                andPerceptron.backPropagate(andInputs[j], new double[]{andOutputs[j]});
-                orPerceptron.backPropagate(orInputs[j], new double[]{orOutputs[j]});
-                xorPerceptron.backPropagate(xorInputs[j], new double[]{xorOutputs[j]});
+                sigmoidAndPerceptron.backPropagate(andInputs[j], new double[]{andOutputs[j]});
+                sigmoidOrPerceptron.backPropagate(orInputs[j], new double[]{orOutputs[j]});
+                sigmoidXorPerceptron.backPropagate(xorInputs[j], new double[]{xorOutputs[j]});
+
+                hyperbolicAndPerceptron.backPropagate(andInputs[j], new double[]{andOutputs[j]});
+                hyperbolicOrPerceptron.backPropagate(orInputs[j], new double[]{orOutputs[j]});
+                hyperbolicXorPerceptron.backPropagate(xorInputs[j], new double[]{xorOutputs[j]});
             }
         }
 
         for (int i = 0; i < andInputs.length; i++) {
-            System.out.println("AND(" + andInputs[i][0] + ", " + andInputs[i][1] + ") = " + andPerceptron.execute(andInputs[i])[0]);
-            System.out.println("OR(" + orInputs[i][0] + ", " + orInputs[i][1] + ") = " + orPerceptron.execute(orInputs[i])[0]);
-            System.out.println("XOR(" + xorInputs[i][0] + ", " + xorInputs[i][1] + ") = " + xorPerceptron.execute(xorInputs[i])[0]);
+            System.out.println("sigmoid AND(" + andInputs[i][0] + ", " + andInputs[i][1] + ") = " + sigmoidAndPerceptron.execute(andInputs[i])[0]);
+            System.out.println("sigmoid OR(" + orInputs[i][0] + ", " + orInputs[i][1] + ") = " + sigmoidOrPerceptron.execute(orInputs[i])[0]);
+            System.out.println("sigmoid XOR(" + xorInputs[i][0] + ", " + xorInputs[i][1] + ") = " + sigmoidXorPerceptron.execute(xorInputs[i])[0]);
+
+            System.out.println("hyperbolic AND(" + andInputs[i][0] + ", " + andInputs[i][1] + ") = " + hyperbolicAndPerceptron.execute(andInputs[i])[0]);
+            System.out.println("hyperbolic OR(" + orInputs[i][0] + ", " + orInputs[i][1] + ") = " + hyperbolicOrPerceptron.execute(orInputs[i])[0]);
+            System.out.println("hyperbolic XOR(" + xorInputs[i][0] + ", " + xorInputs[i][1] + ") = " + hyperbolicXorPerceptron.execute(xorInputs[i])[0]);
         }
 
     }
