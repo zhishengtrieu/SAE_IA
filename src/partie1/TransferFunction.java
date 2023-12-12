@@ -1,3 +1,5 @@
+package partie1;
+
 interface TransferFunction  {
     /**
      * Function de transfert

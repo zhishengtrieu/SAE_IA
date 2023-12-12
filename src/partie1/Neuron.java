@@ -1,3 +1,5 @@
+package partie1;
+
 class Neuron {
     public double Value;
     public double[] Weights;

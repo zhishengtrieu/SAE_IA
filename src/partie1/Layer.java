@@ -1,3 +1,5 @@
+package partie1;
+
 class Layer {
     public Neuron Neurons[];
     public int Length;

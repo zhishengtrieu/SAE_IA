@@ -1,3 +1,5 @@
+package partie1;
+
 class HyperbolicTangent implements TransferFunction {
     @Override
     public double evaluate(double value) {

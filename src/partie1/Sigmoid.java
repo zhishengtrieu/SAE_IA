@@ -1,3 +1,5 @@
+package partie1;
+
 class Sigmoid implements TransferFunction {
     @Override
     public double evaluate(double value) {
