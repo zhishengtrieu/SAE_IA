@@ -1,10 +1,8 @@
-package partie2;
-
-import partie2.algo.AlgoClassification;
-import partie2.algo.kNN;
-import partie2.donnees.ChargementData;
-import partie2.donnees.Donnees;
-import partie2.donnees.Imagette;
+import classification.AlgoClassification;
+import classification.kNN;
+import donnees.ChargementData;
+import donnees.Donnees;
+import donnees.Imagette;
 
 import java.io.IOException;
 

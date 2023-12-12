@@ -1,4 +1,4 @@
-package partie2.donnees;
+package donnees;
 
 import java.io.DataInputStream;
 import java.io.File;

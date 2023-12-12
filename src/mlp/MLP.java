@@ -1,4 +1,4 @@
-package partie1;
+package mlp;
 
 public class MLP {
     protected double fLearningRate = 0.6;

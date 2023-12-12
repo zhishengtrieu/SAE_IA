@@ -1,4 +1,4 @@
-package partie2.donnees;
+package donnees;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

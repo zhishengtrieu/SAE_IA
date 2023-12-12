@@ -1,6 +1,6 @@
-package partie1;
+package mlp;
 
-class HyperbolicTangent implements TransferFunction {
+public class HyperbolicTangent implements TransferFunction {
     @Override
     public double evaluate(double value) {
         return Math.tanh(value);

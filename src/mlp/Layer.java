@@ -1,4 +1,4 @@
-package partie1;
+package mlp;
 
 class Layer {
     public Neuron Neurons[];

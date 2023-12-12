@@ -1,4 +1,4 @@
-package partie1;
+package mlp;
 
 class Neuron {
     public double Value;

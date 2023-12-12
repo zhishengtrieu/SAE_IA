@@ -1,6 +1,6 @@
-package partie2.algo;
+package classification;
 
-import partie2.donnees.Imagette;
+import donnees.Imagette;
 
 import java.io.IOException;
 

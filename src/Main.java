@@ -1,4 +1,6 @@
-package partie1;
+import mlp.HyperbolicTangent;
+import mlp.MLP;
+import mlp.Sigmoid;
 
 public class Main
 {

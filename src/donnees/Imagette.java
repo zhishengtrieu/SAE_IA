@@ -1,4 +1,4 @@
-package partie2.donnees;
+package donnees;
 
 public class Imagette {
     public int[][] data;
