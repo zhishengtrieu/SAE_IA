@@ -5,6 +5,6 @@
 ## Dépôt git
 https://github.com/zhishengtrieu/SAE_IA.git
 ## Réponses aux questions
-### Défi x : 
+### Défi 2 : Modélisation d'un problème de recherche 
 
-### Défi y :
+### Défi 3 : Amélioration du MinMax
