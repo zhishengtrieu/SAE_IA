@@ -72,7 +72,7 @@ public class ChargementData {
 
 
     public static void main(String[] args) throws IOException {
-        ChargementData dataLoaded = new ChargementData("data/train-images.idx3-ubyte", "data/train-labels.idx1-ubyte", 1000);
+        ChargementData dataLoaded = new ChargementData("perceptron/data/train-images.idx3-ubyte", "perceptron/data/train-labels.idx1-ubyte", 1000);
         dataLoaded.saveImagettes();
     }
 
