@@ -88,9 +88,9 @@ public abstract class Game extends BaseProblem {
 
     public Action getMinMaxAlphaBetaMove(GameState state, int maxDepth) {
         if(state.getPlayerToMove()==1) {
-            return MaxValeur(state, Double.MIN_VALUE, Double.MAX_VALUE, 0, maxDepth).getAction();
+            return MaxValeur(state, MIN_VALUE, MAX_VALUE, 0, maxDepth).getAction();
         } else {
-            return MinValeur(state, Double.MIN_VALUE, Double.MAX_VALUE, 0, maxDepth).getAction();
+            return MinValeur(state, MIN_VALUE, MAX_VALUE, 0, maxDepth).getAction();
         }
     }
 
