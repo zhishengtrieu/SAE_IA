@@ -141,7 +141,7 @@ public abstract class Game extends BaseProblem {
             Action C_max = null;
             for (Action c : getActions(state)) {
                 GameState S_suivant = (GameState) doAction(state, c);
-                ActionValuePair v = MinValeur(S_suivant);
+                ActionValuePair v = MinValeur(S_suivant, alpha, beta, depth+1, maxDepth);
                 if (v.getValue() > V_max) {
                     V_max = v.getValue();
                     C_max = c;
@@ -204,7 +204,7 @@ public abstract class Game extends BaseProblem {
             Action C_min = null;
             for (Action c : getActions(state)) {
                 GameState S_suivant = (GameState) doAction(state, c);
-                ActionValuePair v = MaxValeur(S_suivant);
+                ActionValuePair v = MaxValeur(S_suivant, alpha, beta, depth+1, maxDepth);
                 if (v.getValue() < V_min) {
                     V_min = v.getValue();
                     C_min = c;
