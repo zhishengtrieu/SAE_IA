@@ -129,7 +129,7 @@ Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
 
 A partir de notre classe `AlphaBetaBenchmark.java` et du main `MeasureAlphaBeta.java`, nous obtenons les résultats suivants :
 
-![AlphaBetaBenchmark](./docs/AlphaBetaBenchmark.png)
+![AlphaBetaBenchmark](AlphaBetaBenchmark.png)
 
 On peut voir que le temps de calcul augmente exponentiellement avec la profondeur. 
 Cela est dû au fait que le nombre d'états à considérer augmente exponentiellement.
