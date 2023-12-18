@@ -52,11 +52,11 @@ Cela signifie que :
   avons constaté que le MLP était capable d'apprendre plus efficacement. Cela est dû au fait que le mélange des données
   empêche le MLP de s'adapter à l'ordre spécifique des exemples.
 
-## Amélioration de MinMax
+## Défi 3 : Amélioration de MinMax
 
 ### Réduire la taille de l'espace de recherche
 
-- Estimer le nombre d'états du puissance-4 et le facteur de branchement.
+#### Estimer le nombre d'états du puissance-4 et le facteur de branchement.
 
 Le Puissance 4 se joue sur une grille de 6 rangées et 7 colonnes, ce qui donne un total de 42 emplacements possibles pour les pions.
 Chaque emplacement peut être dans l'un des trois états suivants : vide, occupé par un pion du joueur 1, occupé par un pion du joueur 2. 
@@ -70,11 +70,13 @@ Même si cela varie en fonction de l'état spécifique du jeu, on peut donc esti
 
 <br>
 
-- Coder l’algorithme Alpha-Beta
+#### Coder l’algorithme Alpha-Beta
 
 Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
 
-- Tester Alpha-Beta sur le morpion. En comptant le nombre d'états considérés, vérifier qu'il permet d’effectivement réduire ce nombre par rapport à MinMax. Le tester sur le puissance-4 ...
+<br>
+
+#### Tester Alpha-Beta sur le morpion. <br>En comptant le nombre d'états considérés, vérifier qu'il permet d’effectivement réduire ce nombre par rapport à MinMax. <br>Le tester sur le puissance-4 ...
 
 Voici un exemple d'une partie déjà commencée au morpion :
 ```
@@ -103,7 +105,7 @@ En revanche, cela ne fonctionne toujours pas pour le Puissance 4.
 
 ### Cela ne suffit visiblement pas
 
-- Identifier pour le puissance-4 quel sont les structures qui influent sur les chances de gagner.
+#### Identifier pour le puissance-4 quel sont les structures qui influent sur les chances de gagner.
 
 Plusieurs structures peuvent influencer les chances de gagner :
 - Alignements : Les alignements de jetons sont la clé pour gagner. Un joueur qui a trois jetons alignés a plus de chances de gagner qu'un joueur qui a seulement deux jetons alignés, car il n'a besoin que d'un jeton supplémentaire pour gagner. De même, un joueur qui a deux jetons alignés a plus de chances de gagner qu'un joueur qui a seulement un jeton.
@@ -111,10 +113,23 @@ Plusieurs structures peuvent influencer les chances de gagner :
 - Contrôle du centre : Le contrôle des colonnes du milieu du plateau est souvent crucial au Puissance 4, car cela offre plus d'opportunités pour créer des alignements dans différentes directions.
 - Créer des menaces multiples : Créer des situations où un joueur a plusieurs façons de gagner (par exemple, deux alignements de trois jetons qui ne peuvent pas être bloqués tous les deux en un seul tour) peut augmenter considérablement les chances de gagner.
 
-- En faisant des recherches, trouver des exemples de fonctions d'évaluations et proposer une fonction pour le jeux.
+<br>
+
+#### En faisant des recherches, trouver des exemples de fonctions d'évaluations et proposer une fonction pour le jeux.
 
 Voir `Game.java`.
 
-- Modifier Alpha-Beta pour fixer une profondeur maximum. Une fois la profondeur atteinte la valeur retournée sera celle de la fonction d'évaluation.
+#### Modifier Alpha-Beta pour fixer une profondeur maximum. Une fois la profondeur atteinte la valeur retournée sera celle de la fonction d'évaluation.
 
 Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
+
+<br>
+
+#### En calculant le temps nécessaire pour un joueur alpha-beta de prendre une décision, faire un graphique de ce temps en fonction de la profondeur fixée.
+
+A partir de notre classe `AlphaBetaBenchmark.java` et du main `MeasureAlphaBeta.java`, nous obtenons les résultats suivants :
+
+![AlphaBetaBenchmark](./docs/AlphaBetaBenchmark.png)
+
+On peut voir que le temps de calcul augmente exponentiellement avec la profondeur. 
+Cela est dû au fait que le nombre d'états à considérer augmente exponentiellement.
