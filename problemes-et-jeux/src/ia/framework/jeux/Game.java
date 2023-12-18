@@ -82,6 +82,14 @@ public abstract class Game extends BaseProblem {
         }
     }
 
+    public Action getMinMaxAlphaBetaMove(GameState state) {
+        if(state.getPlayerToMove()==1) {
+            return MaxValeur(state, Double.MIN_VALUE, Double.MAX_VALUE).getAction();
+        } else {
+            return MinValeur(state, Double.MIN_VALUE, Double.MAX_VALUE).getAction();
+        }
+    }
+
     /**
      * Fonction MaxValeur(Un état du jeux S) retourne un couple (valeur, coup) // le meilleur coup du point de de vue de max
      *
@@ -120,6 +128,32 @@ public abstract class Game extends BaseProblem {
 
     }
 
+    private ActionValuePair MaxValeur(GameState state, double alpha, double beta) {
+        if (state.getGameValue()>=0){
+            return new ActionValuePair(null, state.getGameValue());
+        } else {
+            double V_max = Double.NEGATIVE_INFINITY;
+            Action C_max = null;
+            for (Action c : getActions(state)) {
+                GameState S_suivant = (GameState) doAction(state, c);
+                ActionValuePair v = MinValeur(S_suivant);
+                if (v.getValue() > V_max) {
+                    V_max = v.getValue();
+                    C_max = c;
+
+                    if (V_max > alpha) {
+                        alpha = V_max;
+                    }
+                }
+                if (V_max >= beta) {
+                    return new ActionValuePair(C_max, V_max);
+                }
+            }
+            return new ActionValuePair(C_max, V_max);
+        }
+
+    }
+
     /**
      *
      *
@@ -151,6 +185,31 @@ public abstract class Game extends BaseProblem {
                 if (v.getValue() < V_min) {
                     V_min = v.getValue();
                     C_min = c;
+                }
+            }
+            return new ActionValuePair(C_min, V_min);
+        }
+    }
+
+    private ActionValuePair MinValeur(GameState state, double alpha, double beta) {
+        if (state.getGameValue()>=0){
+            return new ActionValuePair(null, state.getGameValue());
+        } else {
+            double V_min = Double.POSITIVE_INFINITY;
+            Action C_min = null;
+            for (Action c : getActions(state)) {
+                GameState S_suivant = (GameState) doAction(state, c);
+                ActionValuePair v = MaxValeur(S_suivant);
+                if (v.getValue() < V_min) {
+                    V_min = v.getValue();
+                    C_min = c;
+
+                    if (V_min < beta) {
+                        beta = V_min;
+                    }
+                }
+                if (V_min <= alpha) {
+                    return new ActionValuePair(C_min, V_min);
                 }
             }
             return new ActionValuePair(C_min, V_min);
