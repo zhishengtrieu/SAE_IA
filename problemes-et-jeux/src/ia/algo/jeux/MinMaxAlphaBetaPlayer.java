@@ -14,6 +14,6 @@ public class MinMaxAlphaBetaPlayer extends Player {
 
     @Override
     public Action getMove(GameState state) {
-        return game.getMinMaxAlphaBetaMove(state);
+        return game.getMinMaxAlphaBetaMove(state, 10);
     }
 }
