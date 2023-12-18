@@ -7,9 +7,6 @@ import ia.framework.jeux.Player;
 
 public class MinMaxAlphaBetaPlayer extends Player {
 
-    int ALPHA = Integer.MIN_VALUE;
-    int BETA = Integer.MAX_VALUE;
-
     public MinMaxAlphaBetaPlayer(Game g, boolean p1) {
         super(g, p1);
         name = "MinMaxAlphaBeta";

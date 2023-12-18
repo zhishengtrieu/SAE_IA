@@ -147,7 +147,7 @@ public class ConnectFourState extends GameState {
     /**
      * vérifier s'il y a pas une ligne de 4 de faite (fin du jeux)
      *
-     * @param palyer le joueur pour lequel on verifie
+     * @param player le joueur pour lequel on verifie
      * @return vrai si partie fini
      */
     public boolean isWiningMove(int player) {

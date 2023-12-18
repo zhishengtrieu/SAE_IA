@@ -17,6 +17,9 @@ import ia.framework.common.State;
 
 public abstract class Game extends BaseProblem {
 
+    public static final double MIN_VALUE = Double.MIN_VALUE;
+    public static final double MAX_VALUE = Double.MAX_VALUE;
+
     // pour générer des coups aléatoires
     private Random rng = new Random(); 
 
@@ -84,9 +87,9 @@ public abstract class Game extends BaseProblem {
 
     public Action getMinMaxAlphaBetaMove(GameState state) {
         if(state.getPlayerToMove()==1) {
-            return MaxValeur(state, Double.MIN_VALUE, Double.MAX_VALUE).getAction();
+            return MaxValeur(state, MIN_VALUE, MAX_VALUE).getAction();
         } else {
-            return MinValeur(state, Double.MIN_VALUE, Double.MAX_VALUE).getAction();
+            return MinValeur(state, MIN_VALUE, MAX_VALUE).getAction();
         }
     }
 
