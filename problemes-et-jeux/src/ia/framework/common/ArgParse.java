@@ -207,6 +207,8 @@ public class ArgParse {
                 return new HumanPlayer(game, p1);
             case "minmax":
                 return new MinMaxPlayer(game, p1);
+            case "alphabeta":
+                return new MinMaxAlphaBetaPlayer(game, p1);
             default :
                 System.out.println("Joueur inconnu");
                 usage();
@@ -247,8 +249,8 @@ public class ArgParse {
         default :
             System.out.println("Algorithme inconnu");
             usage();
-            System.exit(1); 
-            
+            System.exit(1);
+
         }
         return null;  // inatteignable, faire plaisir a javac
     }
@@ -262,17 +264,12 @@ public class ArgParse {
     public static State makeInitialState(String prob){
         if (prob==null)
             prob = "vac";
-        switch (prob) {
-        case "dum":
-            return new DummyState();
-        case "map":
-            return RomaniaMap.ARAD;
-        case "vac":
-        default:
-            return new VacuumState();
-        case "puz":
-            return new EightPuzzleState();
-        }
+        return switch (prob) {
+            case "dum" -> new DummyState();
+            case "map" -> RomaniaMap.ARAD;
+            case "puz" -> new EightPuzzleState();
+            default -> new VacuumState();
+        };
     }
 }
 
