@@ -51,3 +51,19 @@ Cela signifie que :
 - En mélangeant les données (c'est-à-dire en présentant les exemples dans un ordre différent à chaque passage), nous
   avons constaté que le MLP était capable d'apprendre plus efficacement. Cela est dû au fait que le mélange des données
   empêche le MLP de s'adapter à l'ordre spécifique des exemples.
+
+## Amélioration de MinMax
+
+### Réduire la taille de l'espace de recherche
+
+- Estimer le nombre d'états du puissance-4 et le facteur de branchement.
+
+Le Puissance 4 se joue sur une grille de 6 rangées et 7 colonnes, ce qui donne un total de 42 emplacements possibles pour les pions.
+Chaque emplacement peut être dans l'un des trois états suivants : vide, occupé par un pion du joueur 1, occupé par un pion du joueur 2. 
+Cela donne un total de $3^42$ états possibles. 
+Ce nombre inclut des états non valides, où des pions flottent dans l'air sans aucun pion en dessous d'eux.
+Pour trouver le nombre d'états valides, il faudrait explorer toutes les possibilités, ce qui est pratiquement impossible à cause du grand nombre d'états.
+
+Chaque colonne peut accepter un pion, à condition qu'elle ne soit pas déjà pleine. 
+Au début du jeu, il y a 7 mouvements possibles et, au fur et à mesure que les colonnes se remplissent, le nombre de mouvements possibles diminue. 
+Même si cela varie en fonction de l'état spécifique du jeu, on peut donc estimer le facteur de branchement à 7/2 = 3,5.
