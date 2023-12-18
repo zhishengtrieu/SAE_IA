@@ -1,4 +1,6 @@
-class HyperbolicTangent implements TransferFunction {
+package mlp;
+
+public class HyperbolicTangent implements TransferFunction {
     @Override
     public double evaluate(double value) {
         return Math.tanh(value);

@@ -1,4 +1,8 @@
-public class Main
+import mlp.HyperbolicTangent;
+import mlp.MLP;
+import mlp.Sigmoid;
+
+public class Partie1
 {
     public static void main(String[] args) {
         double[][] andInputs = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};

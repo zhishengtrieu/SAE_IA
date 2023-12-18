@@ -1,3 +1,5 @@
+package mlp;
+
 class Layer {
     public Neuron Neurons[];
     public int Length;

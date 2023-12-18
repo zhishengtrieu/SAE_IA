@@ -1,4 +1,6 @@
-class Sigmoid implements TransferFunction {
+package mlp;
+
+public class Sigmoid implements TransferFunction {
     @Override
     public double evaluate(double value) {
         return 1.0 / (1.0 + Math.exp(-value));

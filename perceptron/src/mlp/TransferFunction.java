@@ -1,3 +1,5 @@
+package mlp;
+
 interface TransferFunction  {
     /**
      * Function de transfert
