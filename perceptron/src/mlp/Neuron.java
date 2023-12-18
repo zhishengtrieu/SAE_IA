@@ -1,3 +1,5 @@
+package mlp;
+
 class Neuron {
     public double Value;
     public double[] Weights;
