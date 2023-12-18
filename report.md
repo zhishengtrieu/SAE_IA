@@ -70,6 +70,10 @@ Même si cela varie en fonction de l'état spécifique du jeu, on peut donc esti
 
 <br>
 
+- Coder l’algorithme Alpha-Beta
+
+Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
+
 - Tester Alpha-Beta sur le morpion. En comptant le nombre d'états considérés, vérifier qu'il permet d’effectivement réduire ce nombre par rapport à MinMax. Le tester sur le puissance-4 ...
 
 Voici un exemple d'une partie déjà commencée au morpion :
@@ -96,5 +100,21 @@ C'est ainsi que l'algorithme Alpha-Beta permet de réduire le nombre d'états co
 
 En revanche, cela ne fonctionne toujours pas pour le Puissance 4.
 
-<br>
 
+### Cela ne suffit visiblement pas
+
+- Identifier pour le puissance-4 quel sont les structures qui influent sur les chances de gagner.
+
+Plusieurs structures peuvent influencer les chances de gagner :
+- Alignements : Les alignements de jetons sont la clé pour gagner. Un joueur qui a trois jetons alignés a plus de chances de gagner qu'un joueur qui a seulement deux jetons alignés, car il n'a besoin que d'un jeton supplémentaire pour gagner. De même, un joueur qui a deux jetons alignés a plus de chances de gagner qu'un joueur qui a seulement un jeton.
+- Bloquer les alignements adverses : Bloquer un alignement de trois jetons adverses peut améliorer considérablement les chances de gagner, car cela empêche l'adversaire de gagner au tour suivant.
+- Contrôle du centre : Le contrôle des colonnes du milieu du plateau est souvent crucial au Puissance 4, car cela offre plus d'opportunités pour créer des alignements dans différentes directions.
+- Créer des menaces multiples : Créer des situations où un joueur a plusieurs façons de gagner (par exemple, deux alignements de trois jetons qui ne peuvent pas être bloqués tous les deux en un seul tour) peut augmenter considérablement les chances de gagner.
+
+- En faisant des recherches, trouver des exemples de fonctions d'évaluations et proposer une fonction pour le jeux.
+
+Voir `Game.java`.
+
+- Modifier Alpha-Beta pour fixer une profondeur maximum. Une fois la profondeur atteinte la valeur retournée sera celle de la fonction d'évaluation.
+
+Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
