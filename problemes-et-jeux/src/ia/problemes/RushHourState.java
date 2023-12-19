@@ -91,10 +91,16 @@ public class RushHourState extends State {
 
     // Vérifie si l'état est un état gagnant
     public boolean isGoalState() {
-        // La voiture rouge peut sortir si aucun véhicule ne bloque le passage à droite
-        for (int i = 2; i < COLS; i++) {
-            if (board[2][i] != EMPTY && board[2][i] != RED) {
-                return false; // Un véhicule bloque la sortie
+        //on part de l'inverse, on vérifie qu'aucun véhicule ne bloque le passage
+        for(int i = COLS-1; i > 0; i--){
+            if(board[2][i] != EMPTY && board[2][i] != RED){
+                System.out.println("Le véhicule " + board[2][i] + " bloque le passage");
+                return false;
+            }
+            if (board[2][i] == RED) {
+                System.out.println("Le véhicule " + board[2][i] + " a atteint la sortie");
+                printBoard();
+                return true;
             }
         }
         return true;
