@@ -18,7 +18,7 @@ public class LancerRecherche {
             ("Utilisation :\n\n"
              + "java LancerRecherche [-prob problem] [-algo algoname]"
              + "[-v] [-h]\n"
-             + "-prob : Le nom du problem {dum, map, vac, puz}. Par défautl vac\n"
+             + "-prob : Le nom du problem {dum, map, vac, puz, rush}. Par défautl vac\n"
              + "-algo : L'agorithme {rnd, bfs, dfs, ucs, gfs, astar}. Par défault rnd\n"
              + "-v    : Rendre bavard (mettre à la fin)\n"
              + "-h    : afficher ceci (mettre à la fin)"

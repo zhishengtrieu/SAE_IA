@@ -272,7 +272,7 @@ public class ArgParse {
             case "puz":
                 return new EightPuzzleState();
             case "rush":
-                return new RushHourState();
+                return new RushHourState("problemes-et-jeux/gameStates/rushHour/config.txt");
             default:
                 return new VacuumState();
         }

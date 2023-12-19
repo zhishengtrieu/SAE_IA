@@ -3,6 +3,9 @@ package ia.problemes;
 import ia.framework.common.Action;
 import ia.framework.common.State;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,6 +28,31 @@ public class RushHourState extends State {
 
     public RushHourState(char[][] board) {
         this.board = board;
+    }
+
+    public RushHourState(String path) {
+        board = new char[ROWS][COLS];
+        loadBoard(path);
+    }
+
+    public void loadBoard(String path) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            int row = 0;
+            while (line != null) {
+                line = line.replaceAll("\\s+", "");
+                for (int col = 0; col < line.length(); col++) {
+                    System.out.println(line.charAt(col));
+                    board[row][col] = line.charAt(col);
+                }
+                line = reader.readLine();
+                row++;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
