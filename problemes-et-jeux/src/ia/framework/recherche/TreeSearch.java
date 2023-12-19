@@ -1,9 +1,6 @@
 package ia.framework.recherche;
 
-import java.util.Queue;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import ia.framework.common.State;
@@ -36,7 +33,7 @@ public abstract class TreeSearch {
     /*
      * La liste des noeuds a étendre 
      */
-    protected Queue<SearchNode> frontier = null;
+    protected Queue<SearchNode> frontier = new LinkedList<>();
 
     /*
      * La liste de noeuds déjà traités

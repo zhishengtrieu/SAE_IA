@@ -138,9 +138,9 @@ public class ArgParse {
      }
              
     
-    /** 
+    /**
      * Factory qui retourne une instance du problème choisie ou celui par défaut
-     * @param prob Le nom du problème ou null 
+     * @param prob Le nom du problème ou null
      * @return Une instance du problème
      */
     
@@ -156,6 +156,8 @@ public class ArgParse {
             return new Vacuum();
         case "puz":
             return new EightPuzzle();
+        case "rush":
+            return new RushHour();
         default :
             System.out.println("Problème inconnu");
             usage();
@@ -236,16 +238,16 @@ public class ArgParse {
         switch (algo) {
         case "rnd":
             return new RandomSearch(p,s);
-            /*case "bfs":
-            return new BFS(p,s);
         case "dfs":
             return new DFS(p,s);
+        case "astar":
+            return new AStar(p,s);
+        /*case "bfs":
+            return new BFS(p,s);
         case "ucs":
             return new UCS(p,s);
         case "gfs":
-            return new GFS(p,s);
-        case "astar":
-        return new AStar(p,s);*/
+            return new GFS(p,s);*/
         default :
             System.out.println("Algorithme inconnu");
             usage();
@@ -264,10 +266,12 @@ public class ArgParse {
     public static State makeInitialState(String prob){
         if (prob==null)
             prob = "vac";
+
         return switch (prob) {
             case "dum" -> new DummyState();
             case "map" -> RomaniaMap.ARAD;
             case "puz" -> new EightPuzzleState();
+            case "rush" -> new RushHourState("problemes-et-jeux/gameStates/rushHour/config.txt");
             default -> new VacuumState();
         };
     }
