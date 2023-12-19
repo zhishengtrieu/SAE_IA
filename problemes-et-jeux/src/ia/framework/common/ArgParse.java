@@ -138,9 +138,9 @@ public class ArgParse {
      }
              
     
-    /** 
+    /**
      * Factory qui retourne une instance du problème choisie ou celui par défaut
-     * @param prob Le nom du problème ou null 
+     * @param prob Le nom du problème ou null
      * @return Une instance du problème
      */
     
@@ -156,6 +156,8 @@ public class ArgParse {
             return new Vacuum();
         case "puz":
             return new EightPuzzle();
+        case "rush":
+            return new RushHour();
         default :
             System.out.println("Problème inconnu");
             usage();
@@ -263,15 +265,16 @@ public class ArgParse {
         if (prob==null)
             prob = "vac";
         switch (prob) {
-        case "dum":
-            return new DummyState();
-        case "map":
-            return RomaniaMap.ARAD;
-        case "vac":
-        default:
-            return new VacuumState();
-        case "puz":
-            return new EightPuzzleState();
+            case "dum":
+                return new DummyState();
+            case "map":
+                return RomaniaMap.ARAD;
+            case "puz":
+                return new EightPuzzleState();
+            case "rush":
+                return new RushHourState();
+            default:
+                return new VacuumState();
         }
     }
 }
