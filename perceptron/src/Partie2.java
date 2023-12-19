@@ -1,6 +1,7 @@
 import donnees.ChargementData;
 import donnees.Donnees;
 import donnees.Imagette;
+import mlp.HyperbolicTangent;
 import mlp.MLP;
 
 import java.io.DataInputStream;
@@ -18,9 +19,9 @@ public class Partie2
 
 
         // Créer un MLP avec la structure de couches souhaitée et le taux d'apprentissage
-        int[] layers = {784, 100, 10}; // Par exemple, 784 neurones d'entrée (28x28 pixels), 100 neurones cachés, 10 neurones de sortie (classes 0-9)
+        int[] layers = {784, 9, 10}; // Par exemple, 784 neurones d'entrée (28x28 pixels), 100 neurones cachés, 10 neurones de sortie (classes 0-9)
         double learningRate = 0.1;
-        MLP mlp = new MLP(layers, learningRate, new mlp.Sigmoid());
+        MLP mlp = new MLP(layers, learningRate, new HyperbolicTangent()); //new mlp.Sigmoid());
 
         // Entraîner le MLP avec les données d'entraînement
         for (Imagette img : trainData.getImg()) {
@@ -41,7 +42,7 @@ public class Partie2
                 correctPredictions++;
             }
         }
-        System.out.println("Accuracy: " + (double) correctPredictions / testData.getImg().size());
+        System.out.println("Accuracy: " + (double) correctPredictions / testData.getImg().size() * 100 + "%");
     }
 
     private static double[] flattenAndNormalize(int[][] data) {
