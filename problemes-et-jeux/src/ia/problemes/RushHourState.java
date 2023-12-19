@@ -29,7 +29,11 @@ public class RushHourState extends State {
 
     @Override
     public State cloneState() {
-        return new RushHourState(board);
+        char[][] newBoard = new char[ROWS][COLS];
+        for (int i = 0; i < ROWS; i++) {
+            newBoard[i] = Arrays.copyOf(board[i], COLS);
+        }
+        return new RushHourState(newBoard);
     }
 
     @Override
@@ -165,35 +169,31 @@ public class RushHourState extends State {
     // Déplace un véhicule dans la direction donnée
     public void moveVehicule(char vehicle, Action action) {
         if (!canMove(vehicle, action)) {
-            return;  // S'assurer que le mouvement est légal avant de continuer.
+            return;
         }
         printBoard();
-
         int deltaRow = 0, deltaCol = 0;
         if (action.equals(UP)) deltaRow = -1;
         else if (action.equals(DOWN)) deltaRow = 1;
         else if (action.equals(LEFT)) deltaCol = -1;
         else if (action.equals(RIGHT)) deltaCol = 1;
 
-        // Créer un tableau temporaire pour éviter les conflits lors de la mise à jour
-        char[][] tempBoard = new char[ROWS][COLS];
-        for (int i = 0; i < ROWS; i++) {
-            System.arraycopy(board[i], 0, tempBoard[i], 0, COLS);
-        }
-
-        // Mettre à jour le tableau temporaire avec le nouveau positionnement du véhicule
+        // Identifier les cases occupées par le véhicule
+        ArrayList<int[]> vehiclePositions = new ArrayList<>();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 if (board[row][col] == vehicle) {
-                    tempBoard[row][col] = EMPTY;  // Marquer l'ancienne position comme vide
-                    tempBoard[row + deltaRow][col + deltaCol] = vehicle;  // Déplacer le véhicule
+                    vehiclePositions.add(new int[]{row, col});
+                    board[row][col] = EMPTY;  // Libérer l'ancienne position
                 }
             }
         }
 
-        // Copier le tableau temporaire mis à jour dans le tableau principal
-        for (int i = 0; i < ROWS; i++) {
-            System.arraycopy(tempBoard[i], 0, board[i], 0, COLS);
+        // Déplacer le véhicule
+        for (int[] position : vehiclePositions) {
+            int newRow = position[0] + deltaRow;
+            int newCol = position[1] + deltaCol;
+            board[newRow][newCol] = vehicle;
         }
     }
 

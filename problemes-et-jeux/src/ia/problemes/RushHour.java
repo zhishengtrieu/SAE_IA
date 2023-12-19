@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class RushHour extends Problem {
 
-
     public static final Action UP = new Action("Up");
     public static final Action LEFT = new Action("Left");
     public static final Action DOWN = new Action("Down");
