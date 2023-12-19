@@ -144,7 +144,7 @@ B B B . D .
 
 Solution :
 ```
-B-Right > C-Left > B-Right > D-Up > D-Up > D-Up > B-Right > A-Down > A-Down > A-Down > R-Right > R-Right > R-Right > A-Up > A-Up > A-Up > B-Left > D-Down > D-Down > D-Down
+F-Down > E-Right > H-Down > C-Down > E-Right > E-Right > A-Up > G-Left > D-Up > D-Up > D-Up > G-Right > A-Down > E-Left > B-Right > C-Up > B-Right > H-Up > I-Left > B-Right > E-Left > E-Left > A-Down > A-Down > F-Up > R-Right > R-Right > D-Up > R-Right > A-Up > A-Up > B-Left > H-Down
 Solved !
 ```
 
