@@ -47,6 +47,10 @@ public class ConnectFourState extends GameState {
         return cols;
     }
 
+    public int getCell(int row, int col) {
+        return this.board[row][col];
+    }
+
     public ConnectFourState cloneState() {
         ConnectFourState new_s = new ConnectFourState(rows,cols);
         for(int r=0; r<rows; r++)
@@ -147,7 +151,7 @@ public class ConnectFourState extends GameState {
     /**
      * vérifier s'il y a pas une ligne de 4 de faite (fin du jeux)
      *
-     * @param palyer le joueur pour lequel on verifie
+     * @param player le joueur pour lequel on verifie
      * @return vrai si partie fini
      */
     public boolean isWiningMove(int player) {
