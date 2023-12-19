@@ -17,7 +17,7 @@ Voir machin.md
 TODO
 
 ## Défi 2 : Modélisation d'un problème de recherche 
-Voir machin.md
+Voir rushhour.md
 
 ## Défi 3 : Amélioration du MinMax
 Voir machin.md
