@@ -1,11 +1,20 @@
-# SAE_IA
-- Hugo COLLIN
-- Aimé LIM HOUN TCHEN
-- Zhi-Sheng TRIEU
-## Dépôt git
+
+**Hugo COLLIN, Aimé LIM HOUN TCHEN, Zhi-Sheng TRIEU
+21/12/2023**
+<center><h1>SAE : MLP et jeux</h1>
+<h2>Initiation à l'intelligence artificielle</h2></center>
+
+## Informations préalables
+### Dépôt git
 https://github.com/zhishengtrieu/SAE_IA.git
-## MLP - Un peu de programmation ?
-### Pseudo code
+
+## I. Perceptrons multi-couches
+### A. Un peu de programmation ?
+#### a) Un squelette de code...
+
+Ci-dessous le squelette de programme de mise en œuvre d'un perceptron multi-couches en pseudo-code :
+
+```
 debut
 /*
 creation d'un MLP
@@ -21,19 +30,25 @@ entrainement du MLP
 inputs <- [[0, 0], [0, 1], [1, 0], [1, 1]] // valeurs d'entrée XOR
 outputs <- [1, 0, 0, 1] // valeurs de sortie XOR
 tant que changement faire // boucle d'apprentissage
-pour i de 0 à input.length faire // pour chaque entrée
-mlp.backPropagate(inputs[i], outputs[i].toArray()) // apprentissage
-fin pour
+  pour i de 0 à input.length faire // pour chaque entrée
+    mlp.backPropagate(inputs[i], outputs[i].toArray()) // apprentissage
+  fin pour
 fin tant que
 fin
-### Résultats du perceptron (ET, OU, XOR) (Expérimentations et Résultats)
+```
+
+#### b) Fonctions de transfert
+
+Voir les fichiers `Sigmoid.java` et `HyperbolicTangent.java` (package `mlp` dans le répertoire `perceptron/src`).
+
+#### c) Applications: Résultats du perceptron (ET, OU, XOR)
 
 Nous avons testé notre MLP sur les tables logiques ET, OU et XOR.
 Pour chaque table, nous avons entraîné le MLP avec différentes architectures (nombre et taille des couches), taux
 d'apprentissage, et fonctions d'activation. Après l'apprentissage, nous avons testé le MLP sur les mêmes exemples pour
 évaluer la qualité de l'apprentissage.
 
-Nous avons obtenu les résultats suivants :
+Nous obtenons les résultats suivants (`Partie1.java`):
 
 | Fonction d'activation | Fonction de référence | Entrées | Sortie                 | Nombre de couches cachées | Neurones par couches | Taux d'apprentissage | Nombre d'itérations | Erreur                | 
 |-----------------------|-----------------------|---------|------------------------|---------------------------|----------------------|----------------------|---------------------|-----------------------|
@@ -62,7 +77,7 @@ Nous avons obtenu les résultats suivants :
 | Hyperbolique          | OR                    | [1, 0]  | 0.9998025903103174     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
 | Hyperbolique          | OR                    | [1, 1]  | 0.9999380587842318     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
 
-Cela signifie que :
+Nous pouvons interpréter ces résultats de la manière suivante :
 
 - Avec la fonction d'activation sigmoïde, le MLP a pu apprendre parfaitement les tables ET et OU, mais a eu du mal avec
   la table XOR. Cela est dû au fait que XOR n'est pas linéairement séparable, ce qui rend difficile pour le MLP
@@ -76,15 +91,17 @@ Cela signifie que :
   avons constaté que le MLP était capable d'apprendre plus efficacement. Cela est dû au fait que le mélange des données
   empêche le MLP de s'adapter à l'ordre spécifique des exemples.
 
-## MLP - MLP vs KNN
-### Des chiffres...
-#### KNN
+### B. MLP vs KNN
+#### a) Des chiffres...
+
+Voici les tests effectués avec la base de nombres ainsi que les résultats obtenus (`Partie2_Knn.java` et `Partie2_Mlp.java`):
+##### KNN
 - Nb imagettes : 1000
-- Pourcentage de reussite : 78%
+- Pourcentage de réussite : 78%
 - Nombre de reussite : 789
 - Nombre d'echec : 211
-#### MLP
-##### Configuration 1
+##### MLP
+###### Configuration 1
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -92,7 +109,7 @@ Cela signifie que :
     - Cachées : [9]
     - Sorties : 10
 - Accuracy: 56.599999999999994%
-##### Configuration 2
+###### Configuration 2
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -100,7 +117,7 @@ Cela signifie que :
     - Cachées : [9]
     - Sorties : 10
 - Accuracy: 13.100000000000001%
-##### Configuration 3
+###### Configuration 3
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -108,7 +125,7 @@ Cela signifie que :
     - Cachées : [100]
     - Sorties : 10
 - Accuracy: 47.099999999999994%
-##### Configuration 4
+###### Configuration 4
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -116,7 +133,7 @@ Cela signifie que :
     - Cachées : [100]
     - Sorties : 10
 - Accuracy: 9.9%
-##### Configuration 5
+###### Configuration 5
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -124,7 +141,7 @@ Cela signifie que :
     - Cachées : [250]
     - Sorties : 10
 - Accuracy: 33.800000000000004%
-##### Configuration 6
+###### Configuration 6
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -132,7 +149,7 @@ Cela signifie que :
     - Cachées : [250]
     - Sorties : 10
 - Accuracy: 15.5%
-##### Configuration 7
+###### Configuration 7
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -140,7 +157,7 @@ Cela signifie que :
     - Cachées : [100, 100]
     - Sorties : 10
 - Accuracy: 25.6%
-##### Configuration 8
+###### Configuration 8
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -149,20 +166,25 @@ Cela signifie que :
     - Sorties : 10
 - Accuracy: 9.9%
 
-#### Conclusion
+##### Conclusion
 Le KNN est plus performant que le MLP pour la classification des chiffres manuscrits.
 Concernant le choix de la fonction d'activation du MLP, la fonction tanh est plus performante que la fonction sigmoid.
 Une couche cachée de 9 neurones semble être la plus performante pour la fonction tanh et une couche cachée de 250 neurones semble être la plus performante pour la fonction sigmoid.
 L'ajout d'une couche cachée supplémentaire ne semble pas améliorer les performances du MLP.
-### ... et des fripes
-#### KNN
+
+
+#### b) ... et des fripes
+
+Voici les tests effectués avec la base Fashion MNIST ainsi que les résultats obtenus :
+
+##### KNN
 Nb imagettes : 1000
 Pourcentage de reussite : 4%
 Nombre de reussite : 42
 Nombre d'echec : 958
 
-#### MLP
-##### Configuration 1
+##### MLP
+###### Configuration 1
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -170,7 +192,7 @@ Nombre d'echec : 958
   - Cachées : [9]
   - Sorties : 10
 - Accuracy: 57.3%
-##### Configuration 2
+###### Configuration 2
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -178,7 +200,7 @@ Nombre d'echec : 958
   - Cachées : [9]
   - Sorties : 10
 - Accuracy: 59.0%
-##### Configuration 3
+###### Configuration 3
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -186,7 +208,7 @@ Nombre d'echec : 958
   - Cachées : [100]
   - Sorties : 10
 - Accuracy: 24.7%
-##### Configuration 4
+###### Configuration 4
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -194,7 +216,7 @@ Nombre d'echec : 958
   - Cachées : [100]
   - Sorties : 10
 - Accuracy: 38.9%
-##### Configuration 5
+###### Configuration 5
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -202,7 +224,7 @@ Nombre d'echec : 958
   - Cachées : [250]
   - Sorties : 10
 - Accuracy: 23.9%
-##### Configuration 6
+###### Configuration 6
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -210,7 +232,7 @@ Nombre d'echec : 958
   - Cachées : [250]
   - Sorties : 10
 - Accuracy: 32.300000000000004%
-##### Configuration 7
+###### Configuration 7
 - Nb imagettes : 1000
 - Fonction d'activation : tanh
 - Neurones :
@@ -218,7 +240,7 @@ Nombre d'echec : 958
   - Cachées : [100, 100]
   - Sorties : 10
 - Accuracy: 28.299999999999997%
-##### Configuration 8
+###### Configuration 8
 - Nb imagettes : 1000
 - Fonction d'activation : sigmoid
 - Neurones :
@@ -227,31 +249,33 @@ Nombre d'echec : 958
   - Sorties : 10
 - Accuracy: 9.5%
 
-#### Conclusion
+##### Conclusion
 Cette fois, le taux de réussite est extrêmement faible pour KNN, et cela en raison de la ressemblance entre tous les vêtements.
 Pour le MLP, les résultats restent similaires par rapport à la base de données des chiffres manuscrits.
 
-## Défi 2 : Modélisation d'un problème de recherche 
-### Formalisation en terme <S, A, T, C>
-### S : ensemble des états
+## II. Résolution de problèmes & jeux
+### Défi 2 : Modélisation d'un problème de recherche - RushHour
+#### a) Formalisation en terme <S, A, T, C>
+##### S : ensemble des états
 On représente un état de jeu par un tableau à 2 dimensions de taille 6, chaque caractère représentant une case du plateau de jeu.
+
 Les caractères possibles sont les suivants :
 
 - '.' : case vide
 - 'A', 'B', 'C', ... : voiture ou camion de taille 2 ou 3
 - 'R' : voiture rouge (celle qu'on doit faire sortir)
 
-### A : ensemble des actions
+##### A : ensemble des actions
 On représente une action par une chaine "voiture-direction" : "A-Up", "A-Down", "B-Left", ...
 On part du principe que les voitures ne peuvent se déplacer que d'une seule case à la fois.
 
-### T : fonction de transition
+##### T : fonction de transition
 La fonction de transition prend en entrée un état et une action, et renvoie l'état résultant de l'application de l'action à l'état.
 
-### C : fonction de coût
-Chaque action coûte un
+##### C : fonction de coût
+Chaque action coûte 1.
 
-### Exemples
+#### b) Exemples
 - S0 : L'état initial est le suivant :
   ```
   . . A . C C
@@ -263,79 +287,83 @@ Chaque action coûte un
   ```
 - SBut : il n'y plus que des case vides devant la voiture rouge
 
-### Résultats
+#### c) Coder cette formalisation
 
-#### Algorithme BFS
+Voir les classes Java `RushHour` et `RushHourState` (package `ia.problemes` dans  `problemes-et-jeux/src`).
 
-##### Configuration 1
+#### d) Résultats
+
+##### Algorithme BFS
+
+###### Configuration 1
 - Nombre d'états explorés : 270 nodes
 - Max depth : 21
 - Cout de la solution : 20
 
-##### Configuration 2
+###### Configuration 2
 - Nombre d'états explorés : 44807 nodes
 - Max depth : 34
 - Cout de la solution : 33
 
-##### Configuration 3
+###### Configuration 3
 - Nombre d'états explorés : 41360 nodes
 - Max depth : 65
 - Cout de la solution : 64
 
-##### Configuration 4
+###### Configuration 4
 - Nombre d'états explorés : 9444 nodes
 - Max depth : 43
 - Cout de la solution : 42
 
 
-#### Algorithme DFS
+##### Algorithme DFS
 
-##### Configuration 1
+###### Configuration 1
 - Nombre d'états explorés : 134 nodes
 - Max depth : 32
 - Cout de la solution : 32
 
-##### Configuration 2
+###### Configuration 2
 - Nombre d'états explorés : 11840 nodes
 - Max depth : 1147
 - Cout de la solution : 1118
 
-##### Configuration 3
+###### Configuration 3
 - Nombre d'états explorés : 11618 nodes
 - Max depth : 1132
 - Cout de la solution : 1132
 
-##### Configuration 4
+###### Configuration 4
 - Nombre d'états explorés : 2667 nodes
 - Max depth : 414
 - Cout de la solution : 414
 
 
-#### Algorithme A*
+##### Algorithme A*
 
-##### Configuration 1
+###### Configuration 1
 - Nombre d'états explorés : 136 nodes
 - Max depth : 21
 - Cout de la solution : 20
 
-##### Configuration 2
+###### Configuration 2
 - Nombre d'états explorés : 22405 nodes
 - Max depth : 34
 - Cout de la solution : 33
 
-##### Configuration 3
+###### Configuration 3
 - Nombre d'états explorés : 20979 nodes
 - Max depth : 65
 - Cout de la solution : 64
 
-##### Configuration 4
+###### Configuration 4
 - Nombre d'états explorés : 4690 nodes
 - Max depth : 43
 - Cout de la solution : 42
 
-### Solutions avec A*
+#### e) Solutions avec A*
 
-#### Configuration 1
+##### Configuration 1
 Situation initiale :
 ```
 . . A . C C
@@ -362,7 +390,7 @@ Situation finale :
 . . . . . D 
 ```
 
-#### Configuration 2
+##### Configuration 2
 Situation initiale :
 ```
 E E E F . C
@@ -389,7 +417,7 @@ E E E F D C
 I I . . . . 
 ```
 
-#### Configuration 3
+##### Configuration 3
 Situation initiale :
 ```
 E E F C . .
@@ -416,7 +444,7 @@ B B B C D .
 . I I C . . 
 ```
 
-#### Configuration 4
+##### Configuration 4
 Situation initiale :
 ```
 A B C C D E
@@ -443,31 +471,29 @@ F K K N N N
 ```
 
 
-## Défi 3 : Amélioration de MinMax
+### Défi 3 : Amélioration de MinMax - AlphaBeta
 
-### Réduire la taille de l'espace de recherche
+#### a) Réduire la taille de l'espace de recherche
 
-#### Estimer le nombre d'états du puissance-4 et le facteur de branchement.
+##### Estimer le nombre d'états du puissance-4 et le facteur de branchement.
 
 Le Puissance 4 se joue sur une grille de 6 rangées et 7 colonnes, ce qui donne un total de 42 emplacements possibles pour les pions.
 Chaque emplacement peut être dans l'un des trois états suivants : vide, occupé par un pion du joueur 1, occupé par un pion du joueur 2.
-Cela donne un total de $3^42$ états possibles.
+Cela donne un total de $3^{42}$ états possibles.
 Ce nombre inclut des états non valides, où des pions flottent dans l'air sans aucun pion en dessous d'eux.
 Pour trouver le nombre d'états valides, il faudrait explorer toutes les possibilités, ce qui est pratiquement impossible à cause du grand nombre d'états.
 
 Chaque colonne peut accepter un pion, à condition qu'elle ne soit pas déjà pleine.
 Au début du jeu, il y a 7 mouvements possibles et, au fur et à mesure que les colonnes se remplissent, le nombre de mouvements possibles diminue.
-Même si cela varie en fonction de l'état spécifique du jeu, on peut donc estimer le facteur de branchement à 7/2 = 3,5.
+Même si cela varie en fonction de l'état spécifique du jeu, on peut donc estimer le facteur de branchement à $7/2 = 3,5$.
 
-<br>
 
-#### Coder l’algorithme Alpha-Beta
+##### Coder l’algorithme Alpha-Beta
 
-Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
+Voir `Game.java` (package `ia.framework.jeux`) et `MinMaxAlphaBetaPlayer.java` (package `ia.algo.jeux`) dans `problemes-et-jeux/src`.
 
-<br>
 
-#### Tester Alpha-Beta sur le morpion. <br>En comptant le nombre d'états considérés, vérifier qu'il permet d’effectivement réduire ce nombre par rapport à MinMax. <br>Le tester sur le puissance-4 ...
+##### Tester Alpha-Beta sur le morpion. <br>En comptant le nombre d'états considérés, vérifier qu'il permet d’effectivement réduire ce nombre par rapport à MinMax. <br>Le tester sur le puissance-4 ...
 
 Voici un exemple d'une partie déjà commencée au morpion :
 ```
@@ -494,9 +520,9 @@ C'est ainsi que l'algorithme Alpha-Beta permet de réduire le nombre d'états co
 En revanche, cela ne fonctionne toujours pas pour le Puissance 4.
 
 
-### Cela ne suffit visiblement pas
+#### b) Cela ne suffit visiblement pas
 
-#### Identifier pour le puissance-4 quel sont les structures qui influent sur les chances de gagner.
+##### Identifier pour le puissance-4 quel sont les structures qui influent sur les chances de gagner.
 
 Plusieurs structures peuvent influencer les chances de gagner :
 - Alignements : Les alignements de jetons sont la clé pour gagner. Un joueur qui a trois jetons alignés a plus de chances de gagner qu'un joueur qui a seulement deux jetons alignés, car il n'a besoin que d'un jeton supplémentaire pour gagner. De même, un joueur qui a deux jetons alignés a plus de chances de gagner qu'un joueur qui a seulement un jeton.
@@ -504,23 +530,21 @@ Plusieurs structures peuvent influencer les chances de gagner :
 - Contrôle du centre : Le contrôle des colonnes du milieu du plateau est souvent crucial au Puissance 4, car cela offre plus d'opportunités pour créer des alignements dans différentes directions.
 - Créer des menaces multiples : Créer des situations où un joueur a plusieurs façons de gagner (par exemple, deux alignements de trois jetons qui ne peuvent pas être bloqués tous les deux en un seul tour) peut augmenter considérablement les chances de gagner.
 
-<br>
 
-#### En faisant des recherches, trouver des exemples de fonctions d'évaluations et proposer une fonction pour le jeux.
+##### En faisant des recherches, trouver des exemples de fonctions d'évaluations et proposer une fonction pour le jeux.
 
 Voir `Game.java`.
 
-#### Modifier Alpha-Beta pour fixer une profondeur maximum. Une fois la profondeur atteinte la valeur retournée sera celle de la fonction d'évaluation.
+##### Modifier Alpha-Beta pour fixer une profondeur maximum. Une fois la profondeur atteinte la valeur retournée sera celle de la fonction d'évaluation.
 
 Voir `Game.java` et `MinMaxAlphaBetaPlayer.java`.
 
-<br>
 
-#### En calculant le temps nécessaire pour un joueur alpha-beta de prendre une décision, faire un graphique de ce temps en fonction de la profondeur fixée.
+##### En calculant le temps nécessaire pour un joueur alpha-beta de prendre une décision, faire un graphique de ce temps en fonction de la profondeur fixée.
 
 A partir de notre classe `AlphaBetaBenchmark.java` et du main `MeasureAlphaBeta.java`, nous obtenons les résultats suivants :
 
-![AlphaBetaBenchmark](AlphaBetaBenchmark.png)
+![AlphaBetaBenchmark](docs/AlphaBetaBenchmark.png)
 
 On peut voir que le temps de calcul augmente exponentiellement avec la profondeur.
 Cela est dû au fait que le nombre d'états à considérer augmente exponentiellement.
