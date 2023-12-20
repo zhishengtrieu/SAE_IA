@@ -10,7 +10,7 @@ public abstract class AlgoClassification {
     protected Donnees trainData;
 
     public AlgoClassification() throws IOException {
-        this.trainData = new ChargementData("perceptron/data/train-images.idx3-ubyte", "perceptron/data/train-labels.idx1-ubyte", 1000).donnees;
+        this.trainData = new ChargementData("perceptron/data/nombres/train-images.idx3-ubyte", "perceptron/data/nombres/train-labels.idx1-ubyte", 1000).donnees;
     }
 
     public abstract int predict(Imagette img);
