@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Partie2
+public class Partie2_2
 {
     public static void main(String[] args) throws IOException {
         // Charger les données
-        Donnees trainData = new ChargementData("perceptron/data/train-images.idx3-ubyte", "perceptron/data/train-labels.idx1-ubyte", 1000).donnees;
-        Donnees testData = new ChargementData("perceptron/data/t10k-images.idx3-ubyte", "perceptron/data/t10k-labels.idx1-ubyte", 1000).donnees;
+        Donnees trainData = new ChargementData("perceptron/data/fashion/train-images-idx3-ubyte", "perceptron/data/fashion/train-labels-idx1-ubyte", 1000).donnees;
+        Donnees testData = new ChargementData("perceptron/data/fashion/t10k-images-idx3-ubyte", "perceptron/data/fashion/t10k-labels-idx1-ubyte", 1000).donnees;
 
 
         // Créer un MLP avec la structure de couches souhaitée et le taux d'apprentissage

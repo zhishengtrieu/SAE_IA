@@ -32,7 +32,7 @@ public class LabelsLoad {
     }
 
     public static void main(String[] args) throws IOException {
-        LabelsLoad labels = new LabelsLoad("perceptron/data/train-labels.idx1-ubyte", 1000);
+        LabelsLoad labels = new LabelsLoad("perceptron/data/nombres/train-labels.idx1-ubyte", 1000);
         System.out.println(labels.labels);
 
     }

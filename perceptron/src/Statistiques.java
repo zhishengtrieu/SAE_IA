@@ -10,7 +10,7 @@ public class Statistiques {
     public static void main(String[] args) throws IOException {
         AlgoClassification algo = new kNN(10);
         int nbImg = 1000;
-        Donnees testData = new ChargementData("perceptron/data/t10k-images.idx3-ubyte", "perceptron/data/t10k-labels.idx1-ubyte", nbImg).donnees;
+        Donnees testData = new ChargementData("perceptron/data/nombres/t10k-images.idx3-ubyte", "perceptron/data/nombres/t10k-labels.idx1-ubyte", nbImg).donnees;
         int nbCorrect = 0;
         for (Imagette img : testData.getImg()) {
             if (algo.predict(img) == img.getLabel()) {
