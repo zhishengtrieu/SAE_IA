@@ -6,28 +6,28 @@ import ia.framework.recherche.SearchNode;
 import ia.framework.recherche.SearchProblem;
 import ia.framework.recherche.TreeSearch;
 
-import java.util.LinkedList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
-public class DFS extends TreeSearch {
-
-    public DFS(SearchProblem prob, State intial_state){
-        super(prob, intial_state);
+public class UCS extends TreeSearch {
+    /**
+     * Crée un algorithme de recherche
+     *
+     * @param problem Le problème à résoudre
+     * @param initialState L'état initial
+     */
+    public UCS(SearchProblem problem, State initialState) {
+        super(problem, initialState);
+        Comparator<SearchNode> comparator = Comparator.comparing(SearchNode::getCost);
+        this.frontier = new PriorityQueue<>(comparator);
     }
 
     @Override
-    /**
-     * parcourt en profondeur
-     * structure LIFO
-     * procedure DFS(G, v) is
-     *     label v as discovered
-     *     for all directed edges from v to w that are in G.adjacentEdges(v) do
-     *         if vertex w is not labeled as discovered then
-     *             recursively call DFS(G, w)
-     */
     public boolean solve() {
-        ((LinkedList<SearchNode>)frontier).addFirst(SearchNode.makeRootSearchNode(intial_state));
+        PriorityQueue<SearchNode> frontier = new PriorityQueue<>(Comparator.comparingDouble(SearchNode::getCost));
+        frontier.add(SearchNode.makeRootSearchNode(intial_state));
         while (!frontier.isEmpty()) {
-            SearchNode node = ((LinkedList<SearchNode>)frontier).removeFirst();
+            SearchNode node = frontier.poll();
             if (problem.isGoalState(node.getState())) {
                 end_node = node;
                 return true;
@@ -36,10 +36,11 @@ public class DFS extends TreeSearch {
             for (Action action : problem.getActions(node.getState())) {
                 SearchNode child = SearchNode.makeChildSearchNode(problem, node, action);
                 if (!explored.contains(child.getState()) && !frontier.contains(child)) {
-                    ((LinkedList<SearchNode>)frontier).addFirst(child);
+                    frontier.add(child);
                 }
             }
         }
         return false;
     }
+
 }

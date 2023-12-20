@@ -8,26 +8,17 @@ import ia.framework.recherche.TreeSearch;
 
 import java.util.LinkedList;
 
-public class DFS extends TreeSearch {
-
-    public DFS(SearchProblem prob, State intial_state){
-        super(prob, intial_state);
+public class BFS extends TreeSearch {
+    public BFS(SearchProblem problem, State initialState) {
+        super(problem, initialState);
+        this.frontier = new LinkedList<>();
     }
 
     @Override
-    /**
-     * parcourt en profondeur
-     * structure LIFO
-     * procedure DFS(G, v) is
-     *     label v as discovered
-     *     for all directed edges from v to w that are in G.adjacentEdges(v) do
-     *         if vertex w is not labeled as discovered then
-     *             recursively call DFS(G, w)
-     */
     public boolean solve() {
-        ((LinkedList<SearchNode>)frontier).addFirst(SearchNode.makeRootSearchNode(intial_state));
+        frontier.add(SearchNode.makeRootSearchNode(intial_state));
         while (!frontier.isEmpty()) {
-            SearchNode node = ((LinkedList<SearchNode>)frontier).removeFirst();
+            SearchNode node = frontier.poll();
             if (problem.isGoalState(node.getState())) {
                 end_node = node;
                 return true;
@@ -36,7 +27,7 @@ public class DFS extends TreeSearch {
             for (Action action : problem.getActions(node.getState())) {
                 SearchNode child = SearchNode.makeChildSearchNode(problem, node, action);
                 if (!explored.contains(child.getState()) && !frontier.contains(child)) {
-                    ((LinkedList<SearchNode>)frontier).addFirst(child);
+                    frontier.add(child);
                 }
             }
         }
