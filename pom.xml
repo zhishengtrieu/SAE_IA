@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>your-project-name</artifactId>
+    <artifactId>sae-ia</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 
