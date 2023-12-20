@@ -10,16 +10,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Partie2_2
+public class Partie2_Mlp
 {
+    /*
+    --- Numbers MNIST dataset ---
+     */
+    public static final String NOMBRES_TRAIN_IMAGES = "perceptron/data/nombres/train-images.idx3-ubyte";
+    public static final String NOMBRES_TRAIN_LABELS = "perceptron/data/nombres/train-labels.idx1-ubyte";
+    public static final String NOMBRES_T10K_IMAGES = "perceptron/data/nombres/t10k-images.idx3-ubyte";
+    public static final String NOMBRES_T10K_LABELS = "perceptron/data/nombres/t10k-labels.idx1-ubyte";
+
+    /*
+    --- Fashion MNIST dataset ---
+     */
+    public static final String FASHION_TRAIN_IMAGES = "perceptron/data/fashion/train-images-idx3-ubyte";
+    public static final String FASHION_TRAIN_LABELS = "perceptron/data/fashion/train-labels-idx1-ubyte";
+    public static final String FASHION_T10K_IMAGES = "perceptron/data/fashion/t10k-images-idx3-ubyte";
+    public static final String FASHION_T10K_LABELS = "perceptron/data/fashion/t10k-labels-idx1-ubyte";
+
     public static void main(String[] args) throws IOException {
+        int nbImg = 1000;
+
         // Charger les données
-        Donnees trainData = new ChargementData("perceptron/data/fashion/train-images-idx3-ubyte", "perceptron/data/fashion/train-labels-idx1-ubyte", 1000).donnees;
-        Donnees testData = new ChargementData("perceptron/data/fashion/t10k-images-idx3-ubyte", "perceptron/data/fashion/t10k-labels-idx1-ubyte", 1000).donnees;
+//        Donnees trainData = new ChargementData(NOMBRES_TRAIN_IMAGES, NOMBRES_TRAIN_LABELS, nbImg).donnees;
+//        Donnees testData = new ChargementData(NOMBRES_T10K_IMAGES, NOMBRES_T10K_LABELS, nbImg).donnees;
+        Donnees trainData = new ChargementData(FASHION_TRAIN_IMAGES, FASHION_TRAIN_LABELS, nbImg).donnees;
+        Donnees testData = new ChargementData(FASHION_T10K_IMAGES, FASHION_T10K_LABELS, nbImg).donnees;
 
 
         // Créer un MLP avec la structure de couches souhaitée et le taux d'apprentissage
-        int[] layers = {784, 9, 10}; // Par exemple, 784 neurones d'entrée (28x28 pixels), 100 neurones cachés, 10 neurones de sortie (classes 0-9)
+        int[] layers = {784, 9, 10}; // 784 neurones d'entrée (28x28 pixels), x neurones cachés, 10 neurones de sortie (classes 0-9)
         double learningRate = 0.1;
         MLP mlp = new MLP(layers, learningRate, new HyperbolicTangent()); //new mlp.Sigmoid());
 
