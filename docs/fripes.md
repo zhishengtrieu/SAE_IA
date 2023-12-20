@@ -71,3 +71,6 @@ Nombre d'echec : 958
   - Sorties : 10
 - Accuracy: 9.5%
 
+## Conclusion
+Cette fois, le taux de réussite est extrêmement faible pour KNN, et cela en raison de la ressemblance entre tous les vêtements.
+Pour le MLP, les résultats restent similaires par rapport à la base de données des chiffres manuscrits.
