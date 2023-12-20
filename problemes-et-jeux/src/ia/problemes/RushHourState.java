@@ -25,6 +25,7 @@ public class RushHourState extends State {
         board = new char[ROWS][COLS];
         initializeBoard();
     }
+
     private void initializeBoard() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
@@ -118,8 +119,8 @@ public class RushHourState extends State {
     // Vérifie si l'état est un état gagnant
     public boolean isGoalState() {
         //on part de l'inverse, on vérifie qu'aucun véhicule ne bloque le passage
-        for(int i = COLS-1; i > 0; i--){
-            if(board[2][i] != EMPTY && board[2][i] != RED){
+        for (int i = COLS - 1; i > 0; i--) {
+            if (board[2][i] != EMPTY && board[2][i] != RED) {
                 return false;
             }
             if (board[2][i] == RED) {

@@ -34,7 +34,7 @@ Chaque action coûte un
 
 ### Résultats
 
-#### Algorithme DFS
+#### Algorithme BFS
 
 ##### Configuration 1
 - Nombre d'états explorés : 270 nodes
@@ -57,27 +57,27 @@ Chaque action coûte un
 - Cout de la solution : 42
 
 
-#### Algorithme BFS
+#### Algorithme DFS
 
 ##### Configuration 1
-- Nombre d'états explorés :
-- Max depth :
-- Cout de la solution :
+- Nombre d'états explorés : 134 nodes
+- Max depth : 32
+- Cout de la solution : 32
 
 ##### Configuration 2
-- Nombre d'états explorés :
-- Max depth :
-- Cout de la solution :
+- Nombre d'états explorés : 11840 nodes
+- Max depth : 1147
+- Cout de la solution : 1118
 
 ##### Configuration 3
-- Nombre d'états explorés :
-- Max depth :
-- Cout de la solution :
+- Nombre d'états explorés : 11618 nodes
+- Max depth : 1132
+- Cout de la solution : 1132
 
 ##### Configuration 4
-- Nombre d'états explorés :
-- Max depth :
-- Cout de la solution :
+- Nombre d'états explorés : 2667 nodes
+- Max depth : 414
+- Cout de la solution : 414
 
 
 #### Algorithme A*

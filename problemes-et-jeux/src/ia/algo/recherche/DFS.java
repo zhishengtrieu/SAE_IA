@@ -6,6 +6,8 @@ import ia.framework.recherche.SearchNode;
 import ia.framework.recherche.SearchProblem;
 import ia.framework.recherche.TreeSearch;
 
+import java.util.LinkedList;
+
 public class DFS extends TreeSearch {
 
     public DFS(SearchProblem prob, State intial_state){
@@ -23,25 +25,18 @@ public class DFS extends TreeSearch {
      *             recursively call DFS(G, w)
      */
     public boolean solve() {
-        SearchNode node = SearchNode.makeRootSearchNode(intial_state);
-        State state = node.getState();
-        frontier.add(node);
-        explored.add(state);
+        ((LinkedList<SearchNode>)frontier).addFirst(SearchNode.makeRootSearchNode(intial_state));
         while (!frontier.isEmpty()) {
-            node = frontier.poll();
-            state = node.getState();
-            if (problem.isGoalState(state)) {
+            SearchNode node = ((LinkedList<SearchNode>)frontier).removeFirst();
+            if (problem.isGoalState(node.getState())) {
                 end_node = node;
                 return true;
             }
-            else {
-                for (Action a : problem.getActions(state)) {
-                    SearchNode child = SearchNode.makeChildSearchNode(problem, node, a);
-                    State childState = child.getState();
-                    if (!explored.contains(childState)) {
-                        frontier.add(child);
-                        explored.add(childState);
-                    }
+            explored.add(node.getState());
+            for (Action action : problem.getActions(node.getState())) {
+                SearchNode child = SearchNode.makeChildSearchNode(problem, node, action);
+                if (!explored.contains(child.getState()) && !frontier.contains(child)) {
+                    ((LinkedList<SearchNode>)frontier).addFirst(child);
                 }
             }
         }
