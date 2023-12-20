@@ -14,7 +14,7 @@ https://github.com/zhishengtrieu/SAE_IA.git
 
 Ci-dessous le squelette de programme de mise en œuvre d'un perceptron multi-couches en pseudo-code :
 
-```
+```scala
 debut
 /*
 creation d'un MLP
@@ -48,48 +48,41 @@ Pour chaque table, nous avons entraîné le MLP avec différentes architectures 
 d'apprentissage, et fonctions d'activation. Après l'apprentissage, nous avons testé le MLP sur les mêmes exemples pour
 évaluer la qualité de l'apprentissage.
 
-Nous obtenons les résultats suivants (`Partie1.java`):
+Sur 10000 itérations, avec 1 couche cachée et un taux d'apprentissage de 0.1, nous obtenons les résultats suivants (`Partie1.java`) (arrondies au centième):
 
-| Fonction d'activation | Fonction de référence | Entrées | Sortie                 | Nombre de couches cachées | Neurones par couches | Taux d'apprentissage | Nombre d'itérations | Erreur                | 
-|-----------------------|-----------------------|---------|------------------------|---------------------------|----------------------|----------------------|---------------------|-----------------------|
-| Sigmoïde              | XOR                   | [0, 0]  | 0.4990304094544354     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.5049288004653214    |
-| Sigmoïde              | XOR                   | [0, 1]  | 0.49862051347133257    | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.5049288004653214    |
-| Sigmoïde              | XOR                   | [1, 0]  | 0.5014561019638034     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.5049288004653214    |
-| Sigmoïde              | XOR                   | [1, 1]  | 0.5010364792543377     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.5049288004653214    |
-| Sigmoïde              | AND                   | [0, 0]  | 0.0010836773365809967  | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.010369685026790254  |
-| Sigmoïde              | AND                   | [0, 1]  | 0.004876677875313595   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.010369685026790254  |
-| Sigmoïde              | AND                   | [1, 0]  | 0.00519661136199148    | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.010369685026790254  |
-| Sigmoïde              | AND                   | [1, 1]  | 0.9896525415632641     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.010369685026790254  |
-| Sigmoïde              | OR                    | [0, 0]  | 0.012622832150459404   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.418540851227394E-5  |
-| Sigmoïde              | OR                    | [0, 1]  | 0.9941833602402306     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.418540851227394E-5  |
-| Sigmoïde              | OR                    | [1, 0]  | 0.9941764218149999     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.418540851227394E-5  |
-| Sigmoïde              | OR                    | [1, 1]  | 0.9999358148399287     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.418540851227394E-5  |
-| Hyperbolique          | XOR                   | [0, 0]  | 2.997975624305035E-4   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 3.312593982461541E-4  |
-| Hyperbolique          | XOR                   | [0, 1]  | 0.9992990904283804     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 3.312593982461541E-4  |
-| Hyperbolique          | XOR                   | [1, 0]  | 0.999298643504586      | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 3.312593982461541E-4  |
-| Hyperbolique          | XOR                   | [1, 1]  | -1.7091106263497963E-4 | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 3.312593982461541E-4  |
-| Hyperbolique          | AND                   | [0, 0]  | -4.360618617999602E-4  | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.0012258503423522304 |
-| Hyperbolique          | AND                   | [0, 1]  | 6.639352526885852E-5   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.0012258503423522304 |
-| Hyperbolique          | AND                   | [1, 0]  | 3.743344742401563E-4   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.0012258503423522304 |
-| Hyperbolique          | AND                   | [1, 1]  | 0.9987753961498149     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 0.0012258503423522304 |
-| Hyperbolique          | OR                    | [0, 0]  | 9.969417318368007E-5   | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
-| Hyperbolique          | OR                    | [0, 1]  | 0.9998110420103413     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
-| Hyperbolique          | OR                    | [1, 0]  | 0.9998025903103174     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
-| Hyperbolique          | OR                    | [1, 1]  | 0.9999380587842318     | 1                         | [2, 2, 1]            | 0.1                  | 10000               | 6.194223343714E-5     |
+| Fonction activation | Fonction référence | Entrées | Sortie                  | Neurones par couches  | Erreur                | 
+|-----------------------|-----------------------|---------|---------------------------|---------------------|-----------------------|
+| Sigmoïde              | XOR                   | [0, 0]  | 0.499                              | [2, 2, 1]                         | 0.504   |
+| Sigmoïde              | XOR                   | [0, 1]  | 0.498                             | [2, 2, 1]                          | 0.504   |
+| Sigmoïde              | XOR                   | [1, 0]  | 0.501                              | [2, 2, 1]                         | 0.504    |
+| Sigmoïde              | XOR                   | [1, 1]  | 0.501                              | [2, 2, 1]                      | 0.504    |
+| Sigmoïde              | AND                   | [0, 0]  | 0.001                           | [2, 2, 1]                      | 0.010 |
+| Sigmoïde              | AND                   | [0, 1]  | 0.004                            | [2, 2, 1]                       | 0.010 |
+| Sigmoïde              | AND                   | [1, 0]  | 0.005                             | [2, 2, 1]                     | 0.010  |
+| Sigmoïde              | AND                   | [1, 1]  | 0.989                              | [2, 2, 1]                       | 0.010  |
+| Sigmoïde              | OR                    | [0, 0]  | 0.012                            | [2, 2, 1]                        | 6.418E-5  |
+| Sigmoïde              | OR                    | [0, 1]  | 0.994                              | [2, 2, 1]                          | 6.418E-5  |
+| Sigmoïde              | OR                    | [1, 0]  | 0.994                              | [2, 2, 1]                       | 6.418E-5  |
+| Sigmoïde              | OR                    | [1, 1]  | 0.999                              | [2, 2, 1]                      | 6.418E-5  |
+| Hyperbolique          | XOR                   | [0, 0]  | 2.997E-4                            | [2, 2, 1]                      | 3.312E-4  |
+| Hyperbolique          | XOR                   | [0, 1]  | 0.999                              | [2, 2, 1]                     | 3.312E-4  |
+| Hyperbolique          | XOR                   | [1, 0]  | 0.999                               | [2, 2, 1]                         | 3.312E-4  |
+| Hyperbolique          | XOR                   | [1, 1]  | -1.709E-4                          | [2, 2, 1]                      | 3.312E-4  |
+| Hyperbolique          | AND                   | [0, 0]  | -4.360E-4                           | [2, 2, 1]                 | 0.001 |
+| Hyperbolique          | AND                   | [0, 1]  | 6.639E-5                            | [2, 2, 1]                         | 0.001|
+| Hyperbolique          | AND                   | [1, 0]  | 3.743E-4                            | [2, 2, 1]                         | 0.001 |
+| Hyperbolique          | AND                   | [1, 1]  | 0.998                              | [2, 2, 1]                          | 0.001 |
+| Hyperbolique          | OR                    | [0, 0]  | 9.969E-5                            | [2, 2, 1]                       | 6.194E-5     |
+| Hyperbolique          | OR                    | [0, 1]  | 0.999                             | [2, 2, 1]                    | 6.194E-5     |
+| Hyperbolique          | OR                    | [1, 0]  | 0.999                              | [2, 2, 1]                    | 6.194E-5     |
+| Hyperbolique          | OR                    | [1, 1]  | 0.999                              | [2, 2, 1]                    | 6.194E-5     |
 
 Nous pouvons interpréter ces résultats de la manière suivante :
 
-- Avec la fonction d'activation sigmoïde, le MLP a pu apprendre parfaitement les tables ET et OU, mais a eu du mal avec
-  la table XOR. Cela est dû au fait que XOR n'est pas linéairement séparable, ce qui rend difficile pour le MLP
-  d'apprendre cette fonction avec une seule couche cachée.
-- Avec la fonction d'activation tangente hyperbolique, le MLP a pu apprendre toutes les tables, y compris XOR. Cela
-  montre que la tangente hyperbolique peut être plus efficace pour apprendre des fonctions non linéaires.
-- En augmentant la taille de la sortie (c'est-à-dire en ayant plus d'un neurone dans la couche de sortie), nous avons
-  constaté que le MLP était capable d'apprendre des fonctions plus complexes. Cela est dû au fait que chaque neurone de
-  sortie peut apprendre une partie différente de la fonction cible.
-- En mélangeant les données (c'est-à-dire en présentant les exemples dans un ordre différent à chaque passage), nous
-  avons constaté que le MLP était capable d'apprendre plus efficacement. Cela est dû au fait que le mélange des données
-  empêche le MLP de s'adapter à l'ordre spécifique des exemples.
+- Avec la fonction d'activation sigmoïde, le MLP a pu apprendre parfaitement les tables ET et OU, mais a eu du mal avec la table XOR. Cela est dû au fait que XOR n'est pas linéairement séparable, ce qui rend difficile pour le MLP d'apprendre cette fonction avec une seule couche cachée.
+- Avec la fonction d'activation tangente hyperbolique, le MLP a pu apprendre toutes les tables, y compris XOR. Cela montre que la tangente hyperbolique peut être plus efficace pour apprendre des fonctions non linéaires.
+- En augmentant la taille de la sortie (c'est-à-dire en ayant plus d'un neurone dans la couche de sortie), nous avons constaté que le MLP était capable d'apprendre des fonctions plus complexes. Cela s'explique par le fait que chaque neurone de sortie peut apprendre une partie différente de la fonction cible.
+- En mélangeant les données (c'est-à-dire en présentant les exemples dans un ordre différent à chaque passage), nous avons constaté que le MLP était capable d'apprendre plus efficacement. Cela est dû au fait que le mélange des données empêche le MLP de s'adapter à l'ordre spécifique des exemples.
 
 ### B. MLP vs KNN
 #### a) Des chiffres...
@@ -254,7 +247,7 @@ Cette fois, le taux de réussite est extrêmement faible pour KNN, et cela en ra
 Pour le MLP, les résultats restent similaires par rapport à la base de données des chiffres manuscrits.
 
 ## II. Résolution de problèmes & jeux
-### Défi 2 : Modélisation d'un problème de recherche - RushHour
+### Défi 2 : Modélisation d'un problème de recherche - Rush Hour
 #### a) Formalisation en terme <S, A, T, C>
 ##### S : ensemble des états
 On représente un état de jeu par un tableau à 2 dimensions de taille 6, chaque caractère représentant une case du plateau de jeu.
@@ -366,12 +359,12 @@ Voir les classes Java `RushHour` et `RushHourState` (package `ia.problemes` dans
 ##### Configuration 1
 Situation initiale :
 ```
-. . A . C C
-. . A . . .
-R R A . . .
-B B B . . D
-. . . . . D
-. . . . . D
+ .  .  A . C C
+ .  .  A  .  .  .
+R R A  .  .  .
+B B B  .  . D
+ .  .  .   .  . D
+ .  .  .   .  . D
 ```
 
 Solution :
@@ -382,12 +375,12 @@ Solved !
 
 Situation finale :
 ```
-. . A C C . 
-. . A . . . 
-. . A R R . 
-. . B B B D 
-. . . . . D 
-. . . . . D 
+.  . A C C . 
+.  . A  .  .  . 
+.  . A R R  . 
+.  . B B B D 
+.  .  .  .  .  D 
+.  .  .  .  .  D 
 ```
 
 ##### Configuration 2
@@ -470,6 +463,7 @@ F B M M M J
 F K K N N N 
 ```
 
+<div style="page-break-after: always"></div>
 
 ### Défi 3 : Amélioration de MinMax - AlphaBeta
 
