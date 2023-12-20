@@ -33,6 +33,7 @@ replay_pid*
 *.ipr
 
 data/
+target/
 
 # CMake
 cmake-build-*/

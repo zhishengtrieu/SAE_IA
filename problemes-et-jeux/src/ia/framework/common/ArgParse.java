@@ -260,7 +260,6 @@ public class ArgParse {
                 System.out.println("Algorithme inconnu");
                 usage();
                 System.exit(1);
-
         }
         return null;  // inatteignable, faire plaisir a javac
     }
